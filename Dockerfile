@@ -12,7 +12,6 @@ RUN git clone https://github.com/EvolutionAPI/evolution-api.git .
 
 # Install dependencies
 RUN npm install
-RUN npx prisma generate
 
 # Expose port
 EXPOSE 8080
