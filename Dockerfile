@@ -1,17 +1,18 @@
-# Evolution API Dockerfile for Railway
 FROM node:20-alpine
 
-# Set working directory
 WORKDIR /evolution
 
+# Copy package files
+COPY package*.json ./
+
 # Install dependencies
-RUN apk add --no-cache git openssl
-
-# Clone Evolution API repository
-RUN git clone https://github.com/EvolutionAPI/evolution-api.git .
-
-# Install npm dependencies
 RUN npm install
+
+# Copy source code
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
 
 # Expose port
 EXPOSE 8080
